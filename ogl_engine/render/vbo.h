@@ -120,13 +120,6 @@ public:
 		//	glEnableVertexAttribArray(i);
 		//}
 	}
-
-	void show()
-	{
-		for (int i = 0; i < sizeof(M); i += 4)
-			printf("%08X\t", *(uint32_t*)((char*)&M::i + i));
-		printf("\n");
-	}
 };
 
 #endif

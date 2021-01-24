@@ -3,18 +3,6 @@
 #include "render/vbo.h"
 #include "render/mappers/texture_2d_array.h"
 
-template<typename T>
-void rv(T& a)
-{
-	printf("\n&\n");
-}
-
-template<typename T>
-void rv(T&& a)
-{
-	printf("\n&&\n");
-}
-
 #ifdef _DEBUG
 int main()
 #else
