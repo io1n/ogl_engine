@@ -20,7 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="render\VBO.h">
+    <ClInclude Include="render\vbo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture_2d_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\mappers\base_mapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

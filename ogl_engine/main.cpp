@@ -1,6 +1,19 @@
 #include <iostream>
 
-#include "render/VBO.h"
+#include "render/vbo.h"
+#include "render/mappers/texture_2d_array.h"
+
+template<typename T>
+void rv(T& a)
+{
+	printf("\n&\n");
+}
+
+template<typename T>
+void rv(T&& a)
+{
+	printf("\n&&\n");
+}
 
 #ifdef _DEBUG
 int main()
@@ -8,11 +21,19 @@ int main()
 int WinMain()
 #endif
 {
-	glfwInit();
+	vbo<texture_2d_array> a(256);
 
-	printf("%f\n", glfwGetTime());
+	uint32_t v;
 
-	glfwTerminate();
+	for (uint32_t i = 0; i != 0xFFFF; ++i)
+		v = texture_2d_array::i.float_per_vert();
+
+	printf("%lu\n", v);
+
+	for (uint32_t i = 0; i != sizeof(texture_2d_array); i += 4)
+		printf("%08X\t", *(uint32_t*)((uint8_t*)&texture_2d_array::i + i));
+
+	printf("\n");
 
 	return 0;
 }
