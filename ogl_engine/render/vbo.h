@@ -70,7 +70,7 @@ public:
 			return *(T*)(p + convert_offset(_attrib, _comp, _byte));
 		}
 
-		void set_flag(bool _val, uint32_t _attrib, uint8_t _comp = 0, uint8_t _byte = 0, uint8_t _bit = 0)
+		inline void set_flag(bool _val, uint32_t _attrib, uint8_t _comp = 0, uint8_t _byte = 0, uint8_t _bit = 0)
 		{
 			uint8_t o = convert_offset_flag(_bit);
 			uint8_t t = get<uint8_t>(_attrib, _comp, _byte);
@@ -79,12 +79,12 @@ public:
 			set<uint8_t>((t & m) | (_val << o), _attrib, _comp, _byte);
 		}
 
-		bool get_flag(uint32_t _attrib, uint8_t _comp = 0, uint8_t _byte = 0, uint8_t _bit = 0)
+		inline bool get_flag(uint32_t _attrib, uint8_t _comp = 0, uint8_t _byte = 0, uint8_t _bit = 0)
 		{
 			return get<uint8_t>(_attrib, _comp, _byte) & (1 << convert_offset_flag(_bit));
 		}
 
-		void free()
+		inline void free()
 		{
 			p = nullptr;
 		}
