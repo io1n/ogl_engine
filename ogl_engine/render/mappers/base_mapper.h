@@ -17,7 +17,7 @@ protected:
 
 		while (!*beg);
 
-		while (beg != end)
+		while (beg < end)
 		{
 			f += (*beg >> 0b10000) & 0xFF;
 			++beg;

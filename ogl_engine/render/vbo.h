@@ -36,7 +36,10 @@ public:
 	private:
 		uint8_t* p;
 
-		vertex(uint8_t* _p) : p(_p) {}
+		inline void set_ptr(uint8_t* _p)
+		{
+			p = _p;
+		}
 
 		inline uint32_t convert_offset(uint32_t _attrib, uint8_t _comp, uint8_t _byte)
 		{
