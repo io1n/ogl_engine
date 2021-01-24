@@ -2,8 +2,6 @@
 #define TEXTURE_2D_ARRAY_H
 
 #include "base_mapper.h"
-#include <thread>
-#include <chrono>
 
 class texture_2d_array : public base_mapper<texture_2d_array> {
 public:
