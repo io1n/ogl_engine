@@ -5,12 +5,12 @@
 
 class texture_2d_array : public base_mapper<texture_2d_array> {
 public:
-	const uint32_t
-		POS				= 0x01030000,
-		TEX_COORD		= 0x01020003,
-		COLOR			= 0x00010005,
-		ALPHA			= 0x00010006,
-		TEX_ID_LAYER	= 0x00010007;
+	const attrib
+		POS				= {0, 3, 1},
+		TEX_COORD		= {3, 2, 1},
+		COLOR			= {5, 1, 0},
+		ALPHA			= {6, 1, 0},
+		TEX_ID_LAYER	= {7, 1, 0};
 };
 
 #endif

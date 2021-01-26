@@ -9,19 +9,37 @@ int main()
 int WinMain()
 #endif
 {
-	vbo<texture_2d_array> a(256);
+	glfwInit();
 
-	uint32_t v;
+	GLFWwindow* window = glfwCreateWindow(1280, 720, "", NULL, NULL);
 
-	for (uint32_t i = 0; i != 0xFFFF; ++i)
-		v = texture_2d_array::i.float_per_vert();
+	glfwMakeContextCurrent(window);
+	glfwHideWindow(window);
 
-	printf("%lu\n", v);
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cout << "Failed to initialize GLAD" << std::endl;
+		return -1;
+	}
 
-	for (uint32_t i = 0; i != sizeof(texture_2d_array); i += 4)
-		printf("%08X\t", *(uint32_t*)((uint8_t*)&texture_2d_array::i + i));
+	glfwSwapInterval(1);
 
-	printf("\n");
+	double a, b;
+
+	a = glfwGetTime();
+
+	vbo<texture_2d_array> zxc(8192);
+
+	b = glfwGetTime();
+
+	printf("%f\n", b - a);
+
+	for (uint32_t i = 0; i != sizeof(texture_2d_array) >> 0b10; ++i)
+		printf("%08X\t", *((uint32_t*)&texture_2d_array::i + i));
+
+	glfwDestroyWindow(window);
+
+	glfwTerminate();
 
 	return 0;
 }

@@ -5,6 +5,12 @@
 #include <thread>
 #include <chrono>
 
+struct attrib
+{
+	uint16_t offset;
+	uint8_t count, format;
+};
+
 template<typename H> class base_mapper
 {
 protected:

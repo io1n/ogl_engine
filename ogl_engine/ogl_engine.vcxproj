@@ -157,9 +157,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="C:\Users\Ivan\Documents\glad\src\glad.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\Ivan\Documents\glad\include\glad\glad.h" />
     <ClInclude Include="render\mappers\base_mapper.h" />
     <ClInclude Include="render\vbo.h">
       <DeploymentContent>false</DeploymentContent>
