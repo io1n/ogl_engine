@@ -14,18 +14,21 @@ struct attrib
 template<typename H> class base_mapper
 {
 protected:
-	uint16_t f, b;
+	uint16_t b, f;
+	uint32_t ac;
 
 	void wait_for_size()
 	{
-		uint32_t* beg = (uint32_t*)((uint8_t*)this + sizeof(uint32_t));
-		uint32_t* end = (uint32_t*)((uint8_t*)this + sizeof(H));
+		attrib* beg = (attrib*)((uint8_t*)this + sizeof(uint64_t));
+		attrib* end = (attrib*)((uint8_t*)this + sizeof(H));
 
-		while (!*beg);
+		ac = end - beg;
+
+		while (!*(uint32_t*)beg);
 
 		while (beg < end)
 		{
-			f += (*beg >> 0b10000) & 0xFF;
+			f += beg->count;
 			++beg;
 		}
 
@@ -40,6 +43,16 @@ protected:
 
 public:
 	static const H i;
+
+	inline attrib* data() const
+	{
+		return (attrib*)((uint8_t*)this + sizeof(uint64_t));
+	}
+
+	inline uint32_t attrib_count() const
+	{
+		return ac;
+	}
 
 	inline uint16_t float_per_vert() const
 	{
