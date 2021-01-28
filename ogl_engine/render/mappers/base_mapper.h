@@ -35,7 +35,7 @@ protected:
 		b = f << 0b10;
 	}
 
-	base_mapper() : f(0), b(0)
+	base_mapper() : f(0)
 	{
 		std::thread t(&base_mapper::wait_for_size, this);
 		t.detach();

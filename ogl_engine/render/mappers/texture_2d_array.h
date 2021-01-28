@@ -3,7 +3,8 @@
 
 #include "base_mapper.h"
 
-class texture_2d_array : public base_mapper<texture_2d_array> {
+class texture_2d_array : public base_mapper<texture_2d_array>
+{
 public:
 	const attrib
 		POS				= {0, 3, 1},

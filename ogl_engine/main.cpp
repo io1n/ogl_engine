@@ -1,7 +1,8 @@
 #include <iostream>
 
-#include "render/vbo.h"
+#include "render/mapped_vbo.h"
 #include "render/mappers/texture_2d_array.h"
+#include "render/mappers/test_mapper.h"
 
 struct vec3f
 {
@@ -29,15 +30,26 @@ int WinMain()
 
 	glfwSwapInterval(1);
 
-	vbo<texture_2d_array> zxc(4096);
+	mapped_vbo<texture_2d_array> zxc(4096);
+	mapped_vbo<test_mapper> qwe(4096);
+
+	qwe.create();
+	qwe.create();
+
+	std::vector<base_vbo*> dead_inside;
+	dead_inside.push_back(&zxc);
+	dead_inside.push_back(&qwe);
+
+	for (auto i : dead_inside)
+		i->show();
 
 	using t = texture_2d_array;
 
-	vec3f qwe = { 228.f, 1337.f, 1488.f };
+	vec3f qwezxc = { 228.f, 1337.f, 1488.f };
 
-	vbo<t>::vertex* v[4] = {zxc.create(), zxc.create(), zxc.create(), zxc.create()};
+	mapped_vbo<t>::vertex* v[4] = {zxc.create(), zxc.create(), zxc.create(), zxc.create()};
 	//v[0]->set<float>(0.25f, t::i.POS, X);
-	v[0]->set<vec3f>(qwe, t::i.POS, W, W);
+	v[0]->set<vec3f>(qwezxc, t::i.POS, Y);
 	v[1]->set<uint32_t>(0xDEAD4A11, t::i.COLOR, X, Z);
 	v[2]->set<float>(0.75f, t::i.POS, Z);
 	v[3]->set<float>(1.f, t::i.POS, W);

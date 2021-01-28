@@ -1,54 +1,34 @@
-#ifndef VBO_H
-#define	VBO_H
+#ifndef MAPPED_VBO_H
+#define	MAPPED_VBO_H
 
 #include <iostream>
-#include <vector>
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
-
+#include "base_vbo.h"
 #include "mappers/base_mapper.h"
-
-static void (*const print_func[])(void*) =
-{
-	[](void* p) { printf("%08X",*(uint32_t*)p); },
-	[](void* p) { printf("%f",	*(float*)p); },
-	[](void* p) { printf("%d",	*(int32_t*)p); }
-};
 
 enum : uint8_t {X, Y, Z, W};
 
 template<typename M, typename std::enable_if<std::is_base_of<base_mapper<M>, M>::value>::type* = nullptr>
-class vbo
+class mapped_vbo : public base_vbo
 {
 public:
 	class vertex;
 
 private:
-	std::vector<uint8_t> buffer;
 	std::vector<vertex>	 vertices;
 
-	GLuint		vao, vbo;
-	uint32_t	populated;
-	uint8_t*	first_gap;
-
-	uint32_t primitive_type;
-
-	//shader shd;
-
 public:
-
 	class vertex
 	{
 	private:
-		const vbo* b;
+		const mapped_vbo* b;
 		uint8_t* p;
 
-		vertex(vbo* _b) : b(_b), p(nullptr) {}
+		vertex(mapped_vbo* _b) : b(_b), p(nullptr) {}
 
 		inline uint32_t convert_offset0(attrib _attrib)
 		{
-			return ((_attrib.offset % M::i.float_per_vert()) << 0b10);
+			return (_attrib.offset % M::i.float_per_vert()) << 0b10;
 		}
 
 		inline uint32_t convert_offset1(attrib _attrib, uint8_t _comp, uint8_t _byte)
@@ -108,11 +88,10 @@ public:
 			p = nullptr;
 		}
 
-		friend class vbo;
+		friend class mapped_vbo;
 	};
 
-	vbo(uint32_t _vc)
-		: populated(0), first_gap(nullptr)
+	mapped_vbo(uint32_t _vc)
 	{
 		buffer.resize(M::i.byte_per_vert() * _vc);
 		vertices.resize(_vc, this);
@@ -152,27 +131,11 @@ public:
 		v->p = buffer.data() + populated;
 		populated += M::i.byte_per_vert();
 		memset(v->p, 0, M::i.byte_per_vert());
+
 		return v;
 	}
 
-	inline void bind()
-	{
-		glBindVertexArray(vao);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	}
-
-	inline void unbind()
-	{
-		glBindVertexArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-	}
-
-	inline void set_primitive_type(uint32_t _primitive_type)
-	{
-		primitive_type = _primitive_type;
-	}
-
-	void show()
+	void show() override
 	{
 		uint32_t endi = populated >> 0b10;
 		uint32_t i, j, k;
@@ -196,12 +159,6 @@ public:
 			}
 			printf("\n");
 		}
-	}
-
-	virtual ~vbo()
-	{
-		glDeleteBuffers(1, &vbo);
-		glDeleteVertexArrays(1, &vao);
 	}
 };
 
