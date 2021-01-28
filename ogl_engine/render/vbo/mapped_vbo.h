@@ -4,9 +4,7 @@
 #include <iostream>
 
 #include "base_vbo.h"
-#include "mappers/base_mapper.h"
-
-enum : uint8_t {X, Y, Z, W};
+#include "render/mappers/base_mapper.h"
 
 template<typename M, typename std::enable_if<std::is_base_of<base_mapper<M>, M>::value>::type* = nullptr>
 class mapped_vbo : public base_vbo

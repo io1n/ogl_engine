@@ -161,10 +161,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="render\base_vbo.h" />
+    <ClInclude Include="render\vbo\base_vbo.h" />
     <ClInclude Include="C:\Users\Ivan\Documents\glad\include\glad\glad.h" />
     <ClInclude Include="render\mappers\base_mapper.h" />
-    <ClInclude Include="render\mapped_vbo.h">
+    <ClInclude Include="render\vbo\mapped_vbo.h">
       <DeploymentContent>false</DeploymentContent>
     </ClInclude>
     <ClInclude Include="render\mappers\test_mapper.h" />

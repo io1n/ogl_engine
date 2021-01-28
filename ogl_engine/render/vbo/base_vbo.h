@@ -6,6 +6,8 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
+enum : uint8_t { X, Y, Z, W };
+
 class base_vbo
 {
 protected:

@@ -29,10 +29,10 @@
     <ClInclude Include="C:\Users\Ivan\Documents\glad\include\glad\glad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="render\mapped_vbo.h">
+    <ClInclude Include="render\vbo\mapped_vbo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="render\base_vbo.h">
+    <ClInclude Include="render\vbo\base_vbo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render\mappers\test_mapper.h">

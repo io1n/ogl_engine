@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "render/mapped_vbo.h"
+#include "render/vbo/mapped_vbo.h"
 #include "render/mappers/texture_2d_array.h"
 #include "render/mappers/test_mapper.h"
 
@@ -60,7 +60,6 @@ int WinMain()
 
 	for (uint32_t i = 0; i != sizeof(texture_2d_array); i += sizeof(uint32_t))
 		printf("%08X\t", *(uint32_t*)((uint8_t*)&texture_2d_array::i + i));
-
 
 	return 0;
 }
