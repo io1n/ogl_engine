@@ -135,6 +135,16 @@ public:
 		return v;
 	}
 
+	inline vertex* get(uint32_t _i)
+	{
+		return vertices.data() + _i;
+	}
+
+	inline vertex* operator[](uint32_t _i)
+	{
+		return get(_i);
+	}
+
 	void show() override
 	{
 		uint32_t endi = populated >> 0b10;

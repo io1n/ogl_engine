@@ -32,6 +32,8 @@ int WinMain()
 	qwe.create();
 	qwe.create();
 
+	qwe[1]->set<uint64_t>(0xDEAD4A1111A4DAED, test_mapper::i.SHIT, X, Z);
+
 	std::vector<base_vbo*> dead_inside;
 	dead_inside.push_back(&zxc);
 	dead_inside.push_back(&qwe);
